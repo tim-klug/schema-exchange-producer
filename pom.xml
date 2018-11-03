@@ -51,8 +51,8 @@
   </dependencies>
 
   <build>
-    <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
-    <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
+    <sourceDirectory>src/main/code</sourceDirectory>
+    <testSourceDirectory>${project.basedir}/src/test/code</testSourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
@@ -77,8 +77,28 @@
           </dependency>
         </dependencies>
       </plugin>
+      <plugin>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-schema-registry-maven-plugin</artifactId>
+        <version>5.0.0</version>
+        <configuration>
+          <schemaRegistryUrls>
+            <param>http://localhost:8081</param>
+          </schemaRegistryUrls>
+          <outputDirectory>src/main/avro</outputDirectory>
+          <subjectPatterns>
+            <param>^TestSubject000-(key|value)$</param>
+          </subjectPatterns>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
+  <pluginRepositories>
+    <pluginRepository>
+      <id>confluent</id>
+      <url>http://packages.confluent.io/maven/</url>
+    </pluginRepository>
+  </pluginRepositories>
 
 </project>
