@@ -23,6 +23,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
     <kotlin.version>1.2.70</kotlin.version>
+    <avro.version>1.8.2</avro.version>
   </properties>
 
   <dependencies>
@@ -41,6 +42,27 @@
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-reflect</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.avro</groupId>
+      <artifactId>avro</artifactId>
+      <version>${avro.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.avro</groupId>
+      <artifactId>avro-maven-plugin</artifactId>
+      <version>${avro.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.avro</groupId>
+      <artifactId>avro-compiler</artifactId>
+      <version>${avro.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.avro</groupId>
+      <artifactId>avro-ipc</artifactId>
+      <version>${avro.version}</version>
     </dependency>
 
     <dependency>
@@ -89,7 +111,35 @@
           <subjectPatterns>
             <param>^TestSubject000-(key|value)$</param>
           </subjectPatterns>
+          <subjects>
+            <TestSubject000-key>src/main/avro/TestSubject000-Key.avsc</TestSubject000-key>
+            <TestSubject000-value>src/main/avro/TestSubject000-Value.avsc</TestSubject000-value>
+            <User>src/main/avro/user.avsc</User>
+          </subjects>
         </configuration>
+        <goals>
+          <goal>test-compatibility</goal>
+          <goal>register</goal>
+        </goals>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.avro</groupId>
+        <artifactId>avro-maven-plugin</artifactId>
+        <version>${avro.version}</version>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>schema</goal>
+              <goal>protocol</goal>
+              <goal>idl-protocol</goal>
+            </goals>
+            <configuration>
+              <sourceDirectory>${project.basedir}/src/main/avro/</sourceDirectory>
+              <outputDirectory>${project.basedir}/src/main/code/${groupId}/model</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
