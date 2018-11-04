@@ -112,8 +112,8 @@
             <param>^TestSubject000-(key|value)$</param>
           </subjectPatterns>
           <subjects>
-            <TestSubject000-key>src/main/avro/TestSubject000-Key.avsc</TestSubject000-key>
-            <TestSubject000-value>src/main/avro/TestSubject000-Value.avsc</TestSubject000-value>
+            <!--<TestSubject000-key>src/main/avro/TestSubject000-Key.avsc</TestSubject000-key>-->
+            <!--<TestSubject000-value>src/main/avro/TestSubject000-Value.avsc</TestSubject000-value>-->
             <User>src/main/avro/user.avsc</User>
           </subjects>
         </configuration>
@@ -136,7 +136,7 @@
             </goals>
             <configuration>
               <sourceDirectory>${project.basedir}/src/main/avro/</sourceDirectory>
-              <outputDirectory>${project.basedir}/src/main/code/${groupId}/model</outputDirectory>
+              <outputDirectory>${project.basedir}/src/main/code/</outputDirectory>
             </configuration>
           </execution>
         </executions>

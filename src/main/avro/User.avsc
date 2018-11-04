@@ -1,7 +1,7 @@
 {
-  "namespace": "test.avro",
+  "namespace": "com.github.timklug.schemaexchangeproducer.models",
   "type": "record",
-  "name": "user",
+  "name": "User",
   "fields": [
     {
       "name": "name",
@@ -11,6 +11,9 @@
       "name": "firstname",
       "type": "string"
     },
-    {"name": "age", "type": "int"}
+    {
+      "name": "age",
+      "type": "int"
+    }
   ]
 }
