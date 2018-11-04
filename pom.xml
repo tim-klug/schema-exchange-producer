@@ -22,7 +22,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
-    <kotlin.version>1.2.70</kotlin.version>
+    <kotlin.version>1.3.0</kotlin.version>
     <avro.version>1.8.2</avro.version>
   </properties>
 
@@ -112,8 +112,6 @@
             <param>^TestSubject000-(key|value)$</param>
           </subjectPatterns>
           <subjects>
-            <!--<TestSubject000-key>src/main/avro/TestSubject000-Key.avsc</TestSubject000-key>-->
-            <!--<TestSubject000-value>src/main/avro/TestSubject000-Value.avsc</TestSubject000-value>-->
             <User>src/main/avro/user.avsc</User>
           </subjects>
         </configuration>
